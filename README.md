@@ -1,7 +1,7 @@
 Ultrasonic Distance Sensor with Buzzer Alarm
 A BeagleBone Black project written in C++ that measures distance with an HC-SR04 ultrasonic sensor and sounds a passive buzzer when an object gets within 15cm.
 
-Hardware
+Hardware:
 
 BeagleBone Black
 HC-SR04 Ultrasonic Sensor
@@ -12,6 +12,7 @@ Passive Buzzer
 
 
 BeagleBone Setup:
+
 Running Debian 12 on kernel 6.12.66-bone44.
 The ultrasonic trigger uses P9_14 (EHRPWM1, pwmchip0) and the buzzer uses P8_13 (EHRPWM2, pwmchip1). They must be on separate EHRPWM modules because channels on the same module share a hardware timer and cannot run at different frequencies.
 Add these overlays to /boot/uEnv.txt and reboot:
@@ -21,5 +22,7 @@ The echo pin on the HC-SR04 outputs 5V but the BBB GPIO is 3.3V only. A voltage 
 The buzzer needs more current than the BBB PWM pin can supply, so a 2N2222 transistor is used as a switch with the base driven through a 1kΩ resistor from P8_13.
 
 Building and Running:
-bashmake
+```
+make
 sudo ./ultrasonic_with_buzzer
+```
